@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Localization="clr-namespace:dotCypress.AppFog.Localization;assembly=dotCypress.AppFog.Localization"
+                    xmlns:Common="clr-namespace:dotCypress.AppFog.Common;assembly=dotCypress.AppFog.Common">
+    <Localization:LocalizedStrings x:Key="LS" />
+    <Common:AppState x:Key="AppState" />
+
+    <Color x:Key="MainColor">#01719f</Color>
+    <SolidColorBrush x:Key="MainBrush" Color="{StaticResource MainColor}" />
+</ResourceDictionary>

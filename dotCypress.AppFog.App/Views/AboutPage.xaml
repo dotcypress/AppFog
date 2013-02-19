@@ -1,0 +1,43 @@
+﻿<phone:PhoneApplicationPage x:Class="dotCypress.AppFog.App.Views.AboutPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:ElectrumControls="clr-namespace:Electrum.Controls;assembly=Electrum.Controls"
+                            Style="{StaticResource DefaultPageStyle}"
+                            SupportedOrientations="PortraitOrLandscape">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Margin="12,8,0,12" Source="../Assets/Images/Logo.jpg" Stretch="None" HorizontalAlignment="Left" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="{StaticResource PhoneMargin}">
+                <TextBlock Text="{Binding Path=Strings.AppTitle, Source={StaticResource LS}}"
+                           Style="{StaticResource PhoneTextTitle1Style}"
+                           Foreground="{StaticResource MainBrush}" />
+                <TextBlock Text="{Binding AppVersion}"
+                           Style="{StaticResource PhoneTextTitle3Style}"
+                           Foreground="Black" />
+                <Grid Margin="{StaticResource PhoneMargin}" />
+                <TextBlock Text="{Binding Path=Strings.CopyrightMessage, Source={StaticResource LS}}"
+                           Style="{StaticResource PhoneTextSmallStyle}"
+                           TextWrapping="Wrap"
+                           Foreground="DimGray" />
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="2"
+              Margin="{StaticResource PhoneHorizontalMargin}">
+            <TextBlock Margin="{StaticResource PhoneMargin}"
+                       Text="2012 © Vitaly Domnikov"
+                       Style="{StaticResource PhoneTextAccentStyle}" />
+        </Grid>
+
+        <ElectrumControls:BindableApplicationBar BackgroundColor="{StaticResource MainColor}" ForegroundColor="White">
+            <ElectrumControls:BindableApplicationBarIconButton IconUri="/Assets/Images/appbar.feature.email.rest.png"
+                                                               Text="{Binding Path=Strings.SendFeedback, Source={StaticResource LS}}"
+                                                               Command="{Binding SendFeedbackCommand}" />
+        </ElectrumControls:BindableApplicationBar>
+    </Grid>
+</phone:PhoneApplicationPage>

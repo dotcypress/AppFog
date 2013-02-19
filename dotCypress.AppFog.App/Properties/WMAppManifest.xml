@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{6696060B-6031-445E-AA0F-069BF63B6278}" Title="AppFog" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Vitaly Domnikov" Description="" Publisher="Vitaly Domnikov"
+       BitsPerPixel="32">
+    <IconPath IsRelative="true" IsResource="false">Assets\Images\ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="/Views/MainPage.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="AppFog.Token" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Images\Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title></Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>

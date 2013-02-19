@@ -1,0 +1,93 @@
+﻿<phone:PhoneApplicationPage x:Class="dotCypress.AppFog.App.Views.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:ElectrumControls="clr-namespace:Electrum.Controls;assembly=Electrum.Controls"
+                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                            xmlns:Electrum="clr-namespace:Electrum;assembly=Electrum"
+                            Style="{StaticResource DefaultPageStyle}"
+                            SupportedOrientations="PortraitOrLandscape">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image Margin="12,8,0,12" Source="../Assets/Images/Logo.jpg" Stretch="None" HorizontalAlignment="Left" />
+        <StackPanel Grid.Row="1"
+                    Margin="{StaticResource PhoneHorizontalMargin}"
+                    Visibility="{Binding LoggedIn, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+            <TextBlock Text="{Binding Path=Strings.Email, Source={StaticResource LS}}"
+                       Electrum:Attached.AutoUpdateBinding="True"
+                       Style="{StaticResource CaptionTextStyle}" />
+            <TextBox Text="{Binding Username, Mode=TwoWay}"
+                     InputScope="EmailNameOrAddress"
+                     Electrum:Attached.AutoUpdateBinding="True"
+                     Style="{StaticResource TextBoxStyle}" />
+            <TextBlock Text="{Binding Path=Strings.Password, Source={StaticResource LS}}"
+                       Style="{StaticResource CaptionTextStyle}" />
+            <PasswordBox Electrum:Attached.BindPassword="true"
+                         Electrum:Attached.BoundPassword="{Binding Password, Mode=TwoWay}"
+                         Style="{StaticResource PasswordBoxStyle}" />
+            <Button Content="{Binding Path=Strings.Login, Source={StaticResource LS}}"
+                    HorizontalAlignment="Right"
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding Username}"
+                    Style="{StaticResource ButtonStyle}" />
+
+        </StackPanel>
+
+        <controls:Pivot Foreground="{StaticResource MainBrush}"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="0,-24,0,0"
+                        Visibility="{Binding LoggedIn, Converter={StaticResource BoolToVisibilityConverter}}">
+            <controls:PivotItem Header="{Binding Path=Strings.Apps, Source={StaticResource LS}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="0,-24,0,12">
+                        <TextBlock Text="{Binding Info, Converter={StaticResource MemoryUsageConverter}}" Style="{StaticResource CaptionTextStyle}" />
+                        <ProgressBar Foreground="{StaticResource MainBrush}" Value="{Binding Info, Converter={StaticResource MemoryUsageConverter}}" />
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Apps}"
+                             Electrum:Attached.Command="{Binding OpenApplicationCommand}"
+                             Style="{StaticResource AppsListStyle}">
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="{Binding Path=Strings.Services, Source={StaticResource LS}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="0,-24,0,12">
+                        <TextBlock Text="{Binding Info, Converter={StaticResource ServicesUsageConverter}}" Style="{StaticResource CaptionTextStyle}" />
+                        <ProgressBar Foreground="{StaticResource MainBrush}" Value="{Binding Info, Converter={StaticResource ServicesUsageConverter}}" />
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <ItemsControl ItemsSource="{Binding Services}"
+                                      Style="{StaticResource ServicesListStyle}">
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+
+            </controls:PivotItem>
+        </controls:Pivot>
+
+        <ElectrumControls:BindableApplicationBar BackgroundColor="{StaticResource MainColor}" ForegroundColor="White" IsVisible="{Binding LoggedIn}">
+            <ElectrumControls:BindableApplicationBarIconButton IconUri="/Assets/Images/appbar.sync.rest.png"
+                                                               Text="{Binding Path=Strings.Refresh, Source={StaticResource LS}}"
+                                                               Command="{Binding RefreshCommand}" />
+            <ElectrumControls:BindableApplicationBar.MenuItems>
+                <ElectrumControls:BindableApplicationBarMenuItem Text="{Binding Path=Strings.Logoff, Source={StaticResource LS}}"
+                                                                 Command="{Binding LogoffCommand}" />
+                <ElectrumControls:BindableApplicationBarMenuItem Text="{Binding Path=Strings.About, Source={StaticResource LS}}"
+                                                                 Command="{Binding OpenAboutCommand}" />
+            </ElectrumControls:BindableApplicationBar.MenuItems>
+        </ElectrumControls:BindableApplicationBar>
+    </Grid>
+</phone:PhoneApplicationPage>

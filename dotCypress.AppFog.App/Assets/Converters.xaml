@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ElectrumConverters="clr-namespace:Electrum.Converters;assembly=Electrum"
+                    xmlns:Converters="clr-namespace:dotCypress.AppFog.App.Core.Converters">
+
+    <ElectrumConverters:InverseBoolConverter x:Key="InverseBoolConverter" />
+    <ElectrumConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <ElectrumConverters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
+    <ElectrumConverters:StringCaseConverter x:Key="StringCaseConverter" />
+    <Converters:ApplicationStateConverter x:Key="ApplicationStateConverter" />
+    <Converters:MemoryUsageConverter x:Key="MemoryUsageConverter" />
+    <Converters:ServicesUsageConverter x:Key="ServicesUsageConverter" />
+    <Converters:BoolToUriConverter x:Key="BoolToUriConverter" />
+    <Converters:IsRunningToButtonTextConverter x:Key="IsRunningToButtonTextConverter" />
+    <Converters:InstanceStatsConverter x:Key="InstanceStatsConverter" />
+</ResourceDictionary>
